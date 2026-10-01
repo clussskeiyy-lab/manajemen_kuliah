@@ -4,8 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyNajamen</title>
+    <link rel="icon" type="image/png" href="ikon.png">
 </head>
 <body>
-    
+    <header class="topbar">
+
+    <div class="brand">
+      <img
+        src="ikon.png"
+        alt="MyNajemen"
+        class="brand-mark"
+      >
+      <span class="brand-text">
+        My<em>Najemen</em>
+      </span>
+    </div>
+
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      type="button"
+      aria-label="Buka menu"
+      aria-expanded="false"
+      aria-controls="topnav"
+    >
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <nav class="topnav" id="topnav" aria-label="Navigasi utama">
+      <button class="navbtn active" data-view="ringkasan" type="button">
+        Dashboard
+      </button>
+      <button class="navbtn" data-view="tugas" type="button">
+        Tugas Kuliah
+      </button>
+      <button class="navbtn" data-view="jadwal" type="button">
+        Jadwal Kuliah
+      </button>
+      <button class="navbtn" data-view="belajar" type="button">
+        Belajar Mandiri
+      </button>
+    </nav>
+
+  </header>
 </body>
 </html>
