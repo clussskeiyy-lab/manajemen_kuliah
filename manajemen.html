@@ -49,5 +49,157 @@
     </nav>
 
   </header>
+
+  <div class="layout">
+    <main class="content">
+
+      <section
+        id="view-ringkasan"
+        class="view active"
+        aria-labelledby="h-ringkasan"
+      >
+
+        <header class="view-head">
+          <h1 id="h-ringkasan">Dashboard</h1>
+          <p>Dashboard aktivitas kuliahmu hari ini.</p>
+        </header>
+
+        <section class="stat-grid" aria-label="Statistik singkat">
+          <article class="stat-card">
+            <p class="stat-num" id="statBelum">0</p>
+            <p class="stat-label">Tugas belum selesai</p>
+          </article>
+          <article class="stat-card">
+            <p class="stat-num" id="statSelesai">0</p>
+            <p class="stat-label">Tugas selesai</p>
+          </article>
+          <article class="stat-card">
+            <p class="stat-num" id="statHariIni">0</p>
+            <p class="stat-label">Kelas hari ini</p>
+          </article>
+          <article class="stat-card">
+            <p class="stat-num" id="statBelajar">0</p>
+            <p class="stat-label">Sesi belajar mandiri</p>
+          </article>
+        </section>
+
+        <section class="progress-block" aria-label="Progres tugas">
+          <h2 class="section-title">Progres Tugas</h2>
+          <div
+            class="progress-track"
+            role="progressbar"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+            id="progressTrack"
+          >
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <p class="progress-caption" id="progressCaption">
+            Belum ada tugas.
+          </p>
+        </section>
+
+        <section aria-label="Tugas mendekati deadline">
+          <h2 class="section-title">Deadline Terdekat</h2>
+          <ul class="list-plain" id="upnextTugas"></ul>
+        </section>
+
+        <section aria-label="Jadwal kelas hari ini">
+          <h2 class="section-title">Kelas Hari Ini</h2>
+          <ul class="list-plain" id="upnextJadwal"></ul>
+        </section>
+
+      </section>
+
+       <section
+        id="view-tugas"
+        class="view"
+        aria-labelledby="h-tugas"
+      >
+
+        <header class="view-head">
+          <h1 id="h-tugas">Tugas Kuliah</h1>
+          <p>Catat, urutkan, dan pantau tugas yang belum dikerjakan.</p>
+        </header>
+
+        <form
+          id="formTugas"
+          class="form-row"
+          aria-label="Tambah tugas baru"
+        >
+          <div class="field">
+            <label for="tTitle">Nama tugas</label>
+            <input
+              type="text"
+              id="tTitle"
+              name="tTitle"
+              placeholder="Laporan Praktikum Basis Data"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="tMapel">Mata kuliah</label>
+            <input
+              type="text"
+              id="tMapel"
+              name="tMapel"
+              placeholder="Basis Data"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="tPrioritas">Prioritas</label>
+            <select id="tPrioritas" name="tPrioritas">
+              <option value="rendah">Rendah</option>
+              <option value="sedang" selected>Sedang</option>
+              <option value="tinggi">Tinggi</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="tDate">Deadline</label>
+            <input type="date" id="tDate" name="tDate">
+          </div>
+
+          <button type="submit" class="btn-primary">
+            Tambah Tugas
+          </button>
+        </form>
+
+        <div class="toolbar">
+          <div class="field inline">
+            <label for="searchTugas">Cari</label>
+            <input
+              type="search"
+              id="searchTugas"
+              placeholder="Cari judul atau mata kuliah…"
+            >
+          </div>
+
+          <div class="field inline">
+            <label for="sortTugas">Urutkan</label>
+            <select id="sortTugas">
+              <option value="deadline">Deadline terdekat</option>
+              <option value="prioritas">Prioritas tertinggi</option>
+              <option value="nama">Nama A–Z</option>
+            </select>
+          </div>
+
+          <div class="field inline">
+            <label for="filterTugas">Tampilkan</label>
+            <select id="filterTugas">
+              <option value="semua">Semua</option>
+              <option value="belum">Belum selesai</option>
+              <option value="selesai">Selesai</option>
+            </select>
+          </div>
+        </div>
+
+        <ul class="task-list" id="taskList" aria-live="polite"></ul>
+
+      </section>
 </body>
 </html>
