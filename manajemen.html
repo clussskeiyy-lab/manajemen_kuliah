@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyNajamen</title>
     <link rel="icon" type="image/png" href="ikon.png">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="topbar">
@@ -134,7 +135,7 @@
               type="text"
               id="tTitle"
               name="tTitle"
-              placeholder="Laporan Praktikum Basis Data"
+              placeholder="Laporan Praktikum PemWeb"
               required
             >
           </div>
@@ -145,7 +146,7 @@
               type="text"
               id="tMapel"
               name="tMapel"
-              placeholder="Basis Data"
+              placeholder="Telaah Kurikulum"
               required
             >
           </div>
@@ -201,5 +202,140 @@
         <ul class="task-list" id="taskList" aria-live="polite"></ul>
 
       </section>
+      <section
+        id="view-jadwal"
+        class="view"
+        aria-labelledby="h-jadwal"
+      >
+
+        <header class="view-head">
+          <h1 id="h-jadwal">Jadwal Kuliah</h1>
+          <p>Susun jadwal kelas mingguanmu.</p>
+        </header>
+
+        <form
+          id="formJadwal"
+          class="form-row"
+          aria-label="Tambah jadwal kelas"
+        >
+          <div class="field">
+            <label for="jHari">Hari</label>
+            <select id="jHari" name="jHari">
+              <option>Senin</option>
+              <option>Selasa</option>
+              <option>Rabu</option>
+              <option>Kamis</option>
+              <option>Jumat</option>
+              <option>Sabtu</option>
+              <option>Minggu</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="jJam">Jam</label>
+            <input
+              type="text"
+              id="jJam"
+              name="jJam"
+              placeholder="08.00 – 09.40"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="jMapel">Mata kuliah</label>
+            <input
+              type="text"
+              id="jMapel"
+              name="jMapel"
+              placeholder="Pemrograman Web"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="jRuang">Ruangan</label>
+            <input
+              type="text"
+              id="jRuang"
+              name="jRuang"
+              placeholder="Lab 25"
+              required
+            >
+          </div>
+
+          <button type="submit" class="btn-primary">
+            Tambah Jadwal
+          </button>
+        </form>
+
+        <div class="week-grid" id="weekGrid"></div>
+
+      </section>
+
+      <section
+        id="view-belajar"
+        class="view"
+        aria-labelledby="h-belajar"
+      >
+
+        <header class="view-head">
+          <h1 id="h-belajar">Belajar Mandiri</h1>
+          <p>Rencanakan waktu belajar mandiri di luar jam kelas.</p>
+        </header>
+
+        <form
+          id="formBelajar"
+          class="form-row"
+          aria-label="Tambah sesi belajar mandiri"
+        >
+          <div class="field">
+            <label for="sHari">Hari</label>
+            <select id="sHari" name="sHari">
+              <option>Senin</option>
+              <option>Selasa</option>
+              <option>Rabu</option>
+              <option>Kamis</option>
+              <option>Jumat</option>
+              <option>Sabtu</option>
+              <option>Minggu</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="sJam">Jam</label>
+            <input
+              type="text"
+              id="sJam"
+              name="sJam"
+              placeholder="19.00 – 20.30"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="sTopik">Topik</label>
+            <input
+              type="text"
+              id="sTopik"
+              name="sTopik"
+              placeholder="Latihan soal"
+              required
+            >
+          </div>
+
+          <button type="submit" class="btn-primary">
+            Tambah Sesi
+          </button>
+        </form>
+
+        <ul class="study-list" id="studyList"></ul>
+
+      </section>
+
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
