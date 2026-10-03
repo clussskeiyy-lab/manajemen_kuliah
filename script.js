@@ -1,15 +1,5 @@
-const DAYS = [
-  "Senin",
-  "Selasa",
-  "Rabu",
-  "Kamis",
-  "Jumat",
-  "Sabtu",
-  "Minggu",
-];
-
+const DAYS = [ "Senin","Selasa","Rabu","Kamis","Jumat","Sabtu","Minggu",];
 const todayName = DAYS[(new Date().getDay() + 6) % 7];
-
 
 // PENYIMPANAN LOKAL (localStorage)
 const storage = {
@@ -119,11 +109,7 @@ const searchTugas = document.getElementById("searchTugas");
 const sortTugas = document.getElementById("sortTugas");
 const filterTugas = document.getElementById("filterTugas");
 
-const PRIORITY_WEIGHT = {
-  tinggi: 3,
-  sedang: 2,
-  rendah: 1,
-};
+const PRIORITY_WEIGHT = { tinggi: 3, sedang: 2, rendah: 1,};
 
 formTugas.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -135,14 +121,7 @@ formTugas.addEventListener("submit", (e) => {
 
   if (!title || !mapel) return;
 
-  tasks.push({
-    id: Date.now(),
-    title,
-    mapel,
-    prioritas,
-    date,
-    done: false,
-  });
+  tasks.push({id: Date.now(),title,mapel,prioritas,date,done: false,});
 
   storage.save("kk_tasks", tasks);
   formTugas.reset();
@@ -261,7 +240,6 @@ function renderTasks(){
     })
     .join("");
 }
-
 // Belajar Mandiri
 const formBelajar = document.getElementById("formBelajar");
 const studyList = document.getElementById("studyList");
@@ -410,13 +388,7 @@ formJadwal.addEventListener("submit", (e) => {
 
   if (!jam || !mapel || !ruang) return;
 
-  jadwal.push({
-    id: Date.now(),
-    hari,
-    jam,
-    mapel,
-    ruang,
-  });
+  jadwal.push({id: Date.now(),hari,jam,mapel,ruang,});
 
   storage.save("kk_jadwal", jadwal);
   formJadwal.reset();
@@ -430,7 +402,6 @@ function deleteJadwal(id) {
   showToast("Jadwal dihapus");
   renderAll();
 }
-
 // 7 hari dari array DAYS 
 function renderJadwal() {
   weekGrid.innerHTML = DAYS.map((day) => {
