@@ -65,16 +65,8 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") setMenu(false);
 });
 
-// pindah halaman
-document.querySelectorAll(".navbtn").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".navbtn").forEach((b) => b.classList.remove("active"));
-    document.querySelectorAll(".view").forEach((v) => v.classList.remove("active"));
-    btn.classList.add("active");
-    document.getElementById("view-" + btn.dataset.view).classList.add("active");
-    setMenu(false);
-  });
-});
+// tutup menu setelah memilih halaman (HP)
+topnav.addEventListener("click", () => setMenu(false));
 
 // Mencegah XSS sederhana saat menyisipkan teks user ke HTML
 function escapeHtml(str) {

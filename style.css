@@ -110,7 +110,11 @@ button {
   border-color: #3a3742;
 }
 
-.navbtn.active {
+body:not(:has(.view:target)) .navbtn[href="#view-ringkasan"],
+body:has(#view-ringkasan:target) .navbtn[href="#view-ringkasan"],
+body:has(#view-tugas:target) .navbtn[href="#view-tugas"],
+body:has(#view-jadwal:target) .navbtn[href="#view-jadwal"],
+body:has(#view-belajar:target) .navbtn[href="#view-belajar"] {
   background: var(--accent);
   color: #fff;
   border-color: var(--accent);
@@ -171,10 +175,21 @@ button {
 
 .view {
   display: none;
+  scroll-margin-top: 90px;
 }
 
-.view.active {
+#view-ringkasan,
+.view:target {
   display: block;
+}
+
+body:has(.view:target) #view-ringkasan:not(:target) {
+  display: none;
+}
+
+a.navbtn {
+  text-decoration: none;
+  display: inline-block;
 }
 
 .view-head {
