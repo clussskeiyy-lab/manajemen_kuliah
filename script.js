@@ -328,3 +328,87 @@ function renderStudy() {
     `)
     .join("");
 }
+
+// Dashboard
+function renderRingkasan() {
+  const belum = tasks.filter((t) => !t.done).length;
+  const selesai = tasks.filter((t) => t.done).length;
+  const total = tasks.length;
+
+  document.getElementById("statBelum").textContent = belum;
+  document.getElementById("statSelesai").textContent = selesai;
+  document.getElementById("statHariIni").textContent =
+    jadwal.filter((j) => j.hari === todayName).length;
+  document.getElementById("statBelajar").textContent = study.length;
+
+  // Progress: persentase tugas selesai
+  const percent = total === 0 ? 0 : Math.round((selesai / total) * 100);
+  const fill = document.getElementById("progressFill");
+  const track = document.getElementById("progressTrack");
+
+  fill.style.width = percent + "%";
+  track.setAttribute("aria-valuenow", percent);
+
+  document.getElementById("progressCaption").textContent =
+    total === 0
+      ? "Belum ada tugas."
+      : `${selesai} dari ${total} tugas selesai (${percent}%).`;
+
+  // Deadline terdekat (maks 4 item)
+  const upT = document.getElementById("upnextTugas");
+  const pending = tasks
+    .filter((t) => !t.done && t.date)
+    .sort((a, b) => a.date.localeCompare(b.date))
+    .slice(0, 4);
+
+  upT.innerHTML = pending.length
+    ? pending
+        .map((t) => {
+          const dl = daysLeft(t.date);
+          const label =
+            dl < 0
+              ? `Lewat ${Math.abs(dl)} hari`
+              : dl === 0
+              ? "Hari ini"
+              : `${dl} hari lagi`;
+
+          return `
+            <li>
+              <span>${escapeHtml(t.title)}</span>
+              <span class="muted">${label}</span>
+            </li>
+          `;
+        })
+        .join("")
+    : '<li class="empty">Tidak ada tugas dengan deadline mendatang.</li>';
+
+  // Kelas hari ini
+  const upJ = document.getElementById("upnextJadwal");
+  const todays = jadwal
+    .filter((j) => j.hari === todayName)
+    .sort((a, b) => a.jam.localeCompare(b.jam));
+
+  upJ.innerHTML = todays.length
+    ? todays
+        .map((j) => `
+          <li>
+            <span>
+              ${escapeHtml(j.mapel)}
+              <span class="muted-inline">· ${escapeHtml(j.ruang || "")}</span>
+            </span>
+            <span class="muted">${escapeHtml(j.jam)}</span>
+          </li>
+        `)
+        .join("")
+    : '<li class="empty">Tidak ada kelas hari ini.</li>';
+}
+
+// Render total
+function renderAll() {
+  renderTasks();
+  renderJadwal();
+  renderStudy();
+  renderRingkasan();
+}
+
+renderAll();
