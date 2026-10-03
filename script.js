@@ -269,3 +269,62 @@ function renderTasks(){
     })
     .join("");
 }
+
+// Belajar Mandiri
+const formBelajar = document.getElementById("formBelajar");
+const studyList = document.getElementById("studyList");
+
+formBelajar.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const hari = document.getElementById("sHari").value;
+  const jam = document.getElementById("sJam").value.trim();
+  const topik = document.getElementById("sTopik").value.trim();
+
+  if (!jam || !topik) return;
+
+  study.push({
+    id: Date.now(),
+    hari,
+    jam,
+    topik,
+  });
+
+  storage.save("kk_study", study);
+  formBelajar.reset();
+  showToast("Sesi belajar ditambahkan");
+  renderAll();
+});
+
+function deleteStudy(id) {
+  study = study.filter((s) => s.id !== id);
+  storage.save("kk_study", study);
+  renderAll();
+}
+
+function renderStudy() {
+  if (study.length === 0) {
+    studyList.innerHTML = `
+      <li class="list-plain empty" style="padding:16px;">
+        Belum ada jadwal belajar mandiri.
+      </li>
+    `;
+    return;
+  }
+
+  const sorted = [...study].sort((a, b) => (
+    DAYS.indexOf(a.hari) - DAYS.indexOf(b.hari)
+  ));
+
+  studyList.innerHTML = sorted
+    .map((s) => `
+      <li class="study">
+        <span class="time">${s.hari}<br>${escapeHtml(s.jam)}</span>
+        <span class="body">${escapeHtml(s.topik)}</span>
+        <button type="button" onclick="deleteStudy(${s.id})">
+          Hapus
+        </button>
+      </li>
+    `)
+    .join("");
+}
