@@ -299,6 +299,7 @@ formBelajar.addEventListener("submit", (e) => {
 function deleteStudy(id) {
   study = study.filter((s) => s.id !== id);
   storage.save("kk_study", study);
+  showToast("Sesi belajar dihapus");
   renderAll();
 }
 
@@ -319,7 +320,7 @@ function renderStudy() {
   studyList.innerHTML = sorted
     .map((s) => `
       <li class="study">
-        <span class="time">${s.hari}<br>${escapeHtml(s.jam)}</span>
+        <span class="time">${escapeHtml(s.hari)}<br>${escapeHtml(s.jam)}</span>
         <span class="body">${escapeHtml(s.topik)}</span>
         <button type="button" onclick="deleteStudy(${s.id})">
           Hapus
@@ -434,6 +435,7 @@ formJadwal.addEventListener("submit", (e) => {
 function deleteJadwal(id) {
   jadwal = jadwal.filter((j) => j.id !== id);
   storage.save("kk_jadwal", jadwal);
+  showToast("Jadwal dihapus");
   renderAll();
 }
 

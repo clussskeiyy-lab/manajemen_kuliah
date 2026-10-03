@@ -18,12 +18,12 @@
   box-sizing: border-box;
 }
 
-html,
-body {
+html {
   height: 100%;
 }
 
 body {
+  min-height: 100%;
   margin: 0;
   background: var(--bg);
   color: var(--text);
@@ -276,7 +276,7 @@ button {
   font-size: 12.5px;
 }
 
-.list-plain .empty {
+.empty {
   color: var(--muted);
   font-style: italic;
   font-size: 13.5px;
