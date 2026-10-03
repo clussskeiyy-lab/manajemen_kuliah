@@ -415,10 +415,6 @@ button:focus-visible {
   font-size: 14.5px;
 }
 
-.task.done .title {
-  text-decoration: line-through;
-}
-
 .task .meta {
   color: var(--muted);
   font-size: 12.5px;
