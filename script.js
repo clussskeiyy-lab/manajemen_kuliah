@@ -182,7 +182,7 @@ function deleteTask(id) {
 
 // Menggunakan pencarian dengan filter dan sort, lalu render daftar tugas ke DOM
 function renderTasks(){
-  const keyword = searchTugas.value.trim().tolowerCase();
+  const keyword = searchTugas.value.trim().toLowerCase();
   const sortBy = sortTugas.value;
   const filterBy = filterTugas.value;
 
@@ -401,6 +401,75 @@ function renderRingkasan() {
         `)
         .join("")
     : '<li class="empty">Tidak ada kelas hari ini.</li>';
+}
+
+// Jadwal kuliah
+const formJadwal = document.getElementById("formJadwal");
+const weekGrid = document.getElementById("weekGrid");
+
+formJadwal.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const hari = document.getElementById("jHari").value;
+  const jam = document.getElementById("jJam").value.trim();
+  const mapel = document.getElementById("jMapel").value.trim();
+  const ruang = document.getElementById("jRuang").value.trim();
+
+  if (!jam || !mapel || !ruang) return;
+
+  jadwal.push({
+    id: Date.now(),
+    hari,
+    jam,
+    mapel,
+    ruang,
+  });
+
+  storage.save("kk_jadwal", jadwal);
+  formJadwal.reset();
+  showToast("Jadwal ditambahkan");
+  renderAll();
+});
+
+function deleteJadwal(id) {
+  jadwal = jadwal.filter((j) => j.id !== id);
+  storage.save("kk_jadwal", jadwal);
+  renderAll();
+}
+
+// 7 hari dari array DAYS 
+function renderJadwal() {
+  weekGrid.innerHTML = DAYS.map((day) => {
+    const items = jadwal
+      .filter((j) => j.hari === day)
+      .sort((a, b) => a.jam.localeCompare(b.jam));
+
+    const rows = items.length
+      ? items
+          .map((j) => `
+            <div class="slot">
+              <div class="slot-info">
+                <span class="time">${escapeHtml(j.jam)}</span>
+                <span class="slot-text">
+                  ${escapeHtml(j.mapel)}
+                  <span class="muted-inline">· ${escapeHtml(j.ruang || "")}</span>
+                </span>
+              </div>
+              <button type="button" onclick="deleteJadwal(${j.id})">
+                Hapus
+              </button>
+            </div>
+          `)
+          .join("")
+      : '<p class="empty">Tidak ada kelas.</p>';
+
+    return `
+      <article class="day-card">
+        <h3>${day}${day === todayName ? " — Hari ini" : ""}</h3>
+        ${rows}
+      </article>
+    `;
+  }).join("");
 }
 
 // Render total
