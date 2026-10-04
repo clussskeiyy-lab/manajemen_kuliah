@@ -61,3 +61,10 @@ mynajemen/
 ├── script.js        # Logika aplikasi
 └── ikon.png         # Logo / favicon aplikasi
 ```
+## Cara Pakai
+
+1. Buka menu **Tugas Kuliah**, isi formulir, lalu klik **Tambah Tugas**.
+2. Buka menu **Jadwal Kuliah** untuk mengisi kelas mingguan.
+3. Buka menu **Belajar Mandiri** untuk menambah rencana belajar.
+4. Kembali ke **Dashboard** untuk melihat ringkasan aktivitasmu.
+```
